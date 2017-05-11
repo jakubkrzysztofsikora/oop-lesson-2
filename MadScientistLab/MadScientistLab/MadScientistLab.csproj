@@ -45,6 +45,8 @@
     <Compile Include="Cli\CommandInterface.cs" />
     <Compile Include="Cli\CommandParser.cs" />
     <Compile Include="Cli\ICommandInterface.cs" />
+    <Compile Include="Commands\CreateAnimalCommand.cs" />
+    <Compile Include="Commands\ILaboratoryCommand.cs" />
     <Compile Include="Configuration\CliCommands.cs" />
     <Compile Include="Configuration\CommonConstants.cs" />
     <Compile Include="Enums\AnimalTypeEnum.cs" />
@@ -52,7 +54,7 @@
     <Compile Include="LabInventory\Animals\Cat.cs" />
     <Compile Include="LabInventory\Animals\Coyote.cs" />
     <Compile Include="LabInventory\Animals\Dog.cs" />
-    <Compile Include="LabInventory\Animals\Interfaces\Hamster.cs" />
+    <Compile Include="LabInventory\Animals\Hamster.cs" />
     <Compile Include="LabInventory\Animals\Interfaces\IBarkable.cs" />
     <Compile Include="LabInventory\Animals\Interfaces\IPurrable.cs" />
     <Compile Include="LabInventory\Animals\Interfaces\ISqueakable.cs" />
@@ -62,9 +64,12 @@
     <Compile Include="LabInventory\Animals\Tiger.cs" />
     <Compile Include="LabInventory\Animals\Wolf.cs" />
     <Compile Include="LabInventory\Laboratory.cs" />
-    <Compile Include="LabInventory\Machines\Barker.cs" />
+    <Compile Include="LabInventory\Machines\BigMachine.cs" />
     <Compile Include="LabInventory\Machines\Purrer.cs" />
     <Compile Include="LabInventory\Machines\Squeaker.cs" />
+    <Compile Include="LabInventory\Machines\Strategies\BarkStrategy.cs" />
+    <Compile Include="LabInventory\Machines\Strategies\ISoundStrategy.cs" />
+    <Compile Include="LabInventory\Machines\Strategies\StrategyMaker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

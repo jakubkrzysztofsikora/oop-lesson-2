@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using MadScientistLab.Cli;
+using MadScientistLab.Commands;
 using MadScientistLab.Enums;
 using MadScientistLab.LabInventory.Animals;
 using MadScientistLab.LabInventory.Animals.Interfaces;
@@ -13,7 +14,7 @@ namespace MadScientistLab.LabInventory
     {
         private readonly List<Animal> _animals;
         private readonly ICommandInterface _cli;
-        private readonly Barker _barker;
+        private readonly BigMachine _bigMachine;
         private readonly Purrer _purrer;
         private readonly Squeaker _squeaker;
 
@@ -21,47 +22,15 @@ namespace MadScientistLab.LabInventory
         {
             _cli = cli;
             _animals = new List<Animal>();
-            _barker = new Barker(_cli);
+            _bigMachine = new BigMachine(cli);
             _purrer = new Purrer(_cli);
             _squeaker = new Squeaker(_cli);
         }
 
         public void Create(AnimalTypeEnum animalType, string name)
         {
-            switch (animalType)
-            {
-                case AnimalTypeEnum.Cat:
-                    _animals.Add(new Cat(name));
-                    break;
-                case AnimalTypeEnum.Lion:
-                    _animals.Add(new Lion(name));
-                    break;
-                case AnimalTypeEnum.Dog:
-                    _animals.Add(new Dog(name));
-                    break;
-                case AnimalTypeEnum.Wolf:
-                    _animals.Add(new Wolf(name));
-                    break;
-                case AnimalTypeEnum.Mouse:
-                    _animals.Add(new Mouse(name));
-                    break;
-                case AnimalTypeEnum.Rat:
-                    _animals.Add(new Rat(name));
-                    break;
-                case AnimalTypeEnum.Tiger:
-                    _animals.Add(new Tiger(name));
-                    break;
-                case AnimalTypeEnum.Coyote:
-                    _animals.Add(new Coyote(name));
-                    break;
-                case AnimalTypeEnum.Hamster:
-                    _animals.Add(new Hamster(name));
-                    break;
-                default:
-                    _cli.DisplayError($"No such type.");
-                    break;
-            }
-
+            new CreateAnimalCommand(_animals, animalType, name).Execute();
+            
             _cli.DisplayInfo($"Created {animalType} with name {name}.");
         }
 
@@ -103,9 +72,7 @@ namespace MadScientistLab.LabInventory
 
             if (animal is IBarkable)
             {
-                _barker.Execute(animal as IBarkable);
-                animal.Fed = false;
-                animal.Rested = false;
+                _bigMachine.MakeNoise(animal);
             }
             else
             {
