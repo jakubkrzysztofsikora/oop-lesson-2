@@ -17,7 +17,7 @@ namespace MadScientistLab.LabInventory.Animals
             Fed = false;
         }
 
-        public void Eat()
+        /*public void Eat()
         {
             Fed = true;
         }
@@ -25,6 +25,6 @@ namespace MadScientistLab.LabInventory.Animals
         public void GoSleep()
         {
             Rested = true;
-        }
+        }*/
     }
 }

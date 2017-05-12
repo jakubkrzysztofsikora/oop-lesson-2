@@ -26,7 +26,7 @@ namespace MadScientistLab.Tests
         }
 
         [Test]
-        public void ShouldSendDogToBarkerIfFedAndRested()
+        public void ShouldSendAnimalToBigMachineIfFedAndRested()
         {
             //Given
             StubCommandInterface stubbedCli = new StubCommandInterface();
@@ -38,14 +38,14 @@ namespace MadScientistLab.Tests
             laboratory.GoToSleep(testName);
 
             //When
-            laboratory.Barker(testName);
+            laboratory.MakeSound(testName);
 
             //Then
             Assert.That(stubbedCli.BarksMessages, Does.Contain(testName));
         }
 
         [Test]
-        public void ShouldDisplayErrorWhenDogIsNotFedOrRestedButSentToBarker()
+        public void ShouldDisplayErrorWhenAnimalIsNotFedOrRestedButSentToBigMachine()
         {
             //Given
             StubCommandInterface stubbedCli = new StubCommandInterface();
@@ -55,7 +55,7 @@ namespace MadScientistLab.Tests
             laboratory.Create(testType, testName);
 
             //When
-            laboratory.Barker(testName);
+            laboratory.MakeSound(testName);
 
             //Then
             Assert.That(stubbedCli.ErrorsMessages.Count, Is.EqualTo(1));

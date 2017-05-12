@@ -42,9 +42,8 @@ namespace MadScientistLab.LabInventory
                 return;
             }
 
-            var animal = GetAnimalByName(name);
-            animal.GoSleep();
-            _cli.DisplayInfo($"{animal.Name} is well rested.");
+            new GoSleepCommand(_animals, name).Execute();
+            _cli.DisplayInfo($"{name} is well rested.");
         }
 
         public void GoEat(string name)
@@ -55,12 +54,11 @@ namespace MadScientistLab.LabInventory
                 return;
             }
 
-            var animal = GetAnimalByName(name);
-            animal.Eat();
-            _cli.DisplayInfo($"{animal.Name} is well fed.");
+            new EatCommand(_animals, name).Execute();
+            _cli.DisplayInfo($"{name} is well fed.");
         }
 
-        public void Barker(string name)
+        public void MakeSound(string name)
         {
             var animal = GetAnimalByName(name);
 
@@ -70,58 +68,7 @@ namespace MadScientistLab.LabInventory
                 return;
             }
 
-            if (animal is IBarkable)
-            {
-                _bigMachine.MakeNoise(animal);
-            }
-            else
-            {
-                _cli.DisplayError($"{name} can't bark.");
-            }
-        }
-
-        public void Purrer(string name)
-        {
-            var animal = GetAnimalByName(name);
-
-            if (!IsAnimalReadyForMachine(animal))
-            {
-                _cli.DisplayError($"{name} can't do it right now.");
-                return;
-            }
-
-            if (animal is IPurrable)
-            {
-                _purrer.Execute(animal as IPurrable);
-                animal.Fed = false;
-                animal.Rested = false;
-            }
-            else
-            {
-                _cli.DisplayError($"{name} can't purr.");
-            }
-        }
-
-        public void Squeaker(string name)
-        {
-            var animal = GetAnimalByName(name);
-
-            if (!IsAnimalReadyForMachine(animal))
-            {
-                _cli.DisplayError($"{name} can't do it right now.");
-                return;
-            }
-
-            if (animal is ISqueakable)
-            {
-                _squeaker.Execute(animal as ISqueakable);
-                animal.Fed = false;
-                animal.Rested = false;
-            }
-            else
-            {
-                _cli.DisplayError($"{name} can't squeak.");
-            }
+            new MakeSoundCommand(_bigMachine, _animals, name).Execute();
         }
 
         public void ListAnimals()
@@ -132,10 +79,10 @@ namespace MadScientistLab.LabInventory
             }
         }
 
-        public void Delete(string nameOfAnimal)
+        public void Delete(string name)
         {
-            _animals.Remove(GetAnimalByName(nameOfAnimal));
-            _cli.DisplayInfo($"Removed {nameOfAnimal} from the lab");
+            new DeleteCommand(_animals, name).Execute();   
+            _cli.DisplayInfo($"Removed {name} from the lab");
         }
 
         private bool ValidateExistenceOfAnimal(string name)

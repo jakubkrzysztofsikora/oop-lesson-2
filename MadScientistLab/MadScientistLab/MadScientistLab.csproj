@@ -63,13 +63,19 @@
     <Compile Include="LabInventory\Animals\Rat.cs" />
     <Compile Include="LabInventory\Animals\Tiger.cs" />
     <Compile Include="LabInventory\Animals\Wolf.cs" />
+    <Compile Include="Commands\GoSleepCommand.cs" />
+    <Compile Include="Commands\EatCommand.cs" />
+    <Compile Include="Commands\DeleteCommand.cs" />
     <Compile Include="LabInventory\Laboratory.cs" />
     <Compile Include="LabInventory\Machines\BigMachine.cs" />
     <Compile Include="LabInventory\Machines\Purrer.cs" />
     <Compile Include="LabInventory\Machines\Squeaker.cs" />
+    <Compile Include="LabInventory\Machines\Strategies\PurrStrategy.cs" />
+    <Compile Include="LabInventory\Machines\Strategies\SqueakStrategy.cs" />
     <Compile Include="LabInventory\Machines\Strategies\BarkStrategy.cs" />
     <Compile Include="LabInventory\Machines\Strategies\ISoundStrategy.cs" />
     <Compile Include="LabInventory\Machines\Strategies\StrategyMaker.cs" />
+    <Compile Include="Commands\MakeSoundCommand.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

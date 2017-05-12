@@ -37,14 +37,8 @@ namespace MadScientistLab
                     case CliCommands.GoEatCommand:
                         Lab.GoEat(commandFirstParameter);
                         break;
-                    case CliCommands.BarkerCommand:
-                        Lab.Barker(commandFirstParameter);
-                        break;
-                    case CliCommands.PurrerCommand:
-                        Lab.Purrer(commandFirstParameter);
-                        break;
-                    case CliCommands.SqueakerCommand:
-                        Lab.Squeaker(commandFirstParameter);
+                    case CliCommands.MakeSound:
+                        Lab.MakeSound(commandFirstParameter);
                         break;
                     case CliCommands.ListCommand:
                         Lab.ListAnimals();
