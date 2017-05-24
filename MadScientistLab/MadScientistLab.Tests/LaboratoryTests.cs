@@ -114,7 +114,7 @@ namespace MadScientistLab.Tests
         }
 
         [Test]
-        public void ShouldAnimalFromList()
+        public void ShouldRemoveAnimalFromList()
         {
             StubCommandInterface stubbedCli = new StubCommandInterface();
             Laboratory laboratory = new Laboratory(stubbedCli);

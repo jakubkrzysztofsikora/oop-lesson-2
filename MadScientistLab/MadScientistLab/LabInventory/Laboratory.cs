@@ -15,22 +15,17 @@ namespace MadScientistLab.LabInventory
         private readonly List<Animal> _animals;
         private readonly ICommandInterface _cli;
         private readonly BigMachine _bigMachine;
-        //private readonly Purrer _purrer;
-        //private readonly Squeaker _squeaker;
 
         public Laboratory(ICommandInterface cli)
         {
             _cli = cli;
             _animals = new List<Animal>();
             _bigMachine = new BigMachine(cli);
-            //_purrer = new Purrer(_cli);
-            //_squeaker = new Squeaker(_cli);
         }
 
         public void Create(AnimalTypeEnum animalType, string name)
         {
             new CreateAnimalCommand(_animals, animalType, name).Execute();
-            
             _cli.DisplayInfo($"Created {animalType} with name {name}.");
         }
 
@@ -41,10 +36,8 @@ namespace MadScientistLab.LabInventory
                 _cli.DisplayError($"{name} doesn't exist.");
                 return;
             }
-
             var animal = GetAnimalByName(name);
-            animal.GoSleep();
-            _cli.DisplayInfo($"{animal.Name} is well rested.");
+            new GoToSleepCommand(animal,_cli).Execute();
         }
 
         public void GoEat(string name)
@@ -54,90 +47,57 @@ namespace MadScientistLab.LabInventory
                 _cli.DisplayError($"{name} doesn't exist.");
                 return;
             }
-
             var animal = GetAnimalByName(name);
-            animal.Eat();
-            _cli.DisplayInfo($"{animal.Name} is well fed.");
+            new GoToEatCommand(animal, _cli).Execute();
         }
 
         public void Barker(string name)
         {
             var animal = GetAnimalByName(name);
-
             if (!IsAnimalReadyForMachine(animal))
             {
                 _cli.DisplayError($"{name} can't do it right now.");
                 return;
             }
-
-            if (animal is IBarkable)
-            {
-                _bigMachine.MakeNoise(animal);
-            }
-            else
-            {
-                _cli.DisplayError($"{name} can't bark.");
-            }
+            new BarkCommand(animal, _cli, _bigMachine).Execute();
         }
 
         public void Purrer(string name)
         {
             var animal = GetAnimalByName(name);
-
             if (!IsAnimalReadyForMachine(animal))
             {
                 _cli.DisplayError($"{name} can't do it right now.");
                 return;
             }
-
-            if (animal is IPurrable)
-            {
-                //_purrer.Execute(animal as IPurrable);
-                _bigMachine.MakeNoise(animal);
-                //animal.Fed = false;
-                //animal.Rested = false;
-            }
-            else
-            {
-                _cli.DisplayError($"{name} can't purr.");
-            }
+            new PurrCommand(animal, _cli, _bigMachine).Execute();
         }
 
         public void Squeaker(string name)
         {
             var animal = GetAnimalByName(name);
-
             if (!IsAnimalReadyForMachine(animal))
             {
                 _cli.DisplayError($"{name} can't do it right now.");
                 return;
             }
-
-            if (animal is ISqueakable)
-            {
-                //_squeaker.Execute(animal as ISqueakable);
-                _bigMachine.MakeNoise(animal);
-                //animal.Fed = false;
-                //animal.Rested = false;
-            }
-            else
-            {
-                _cli.DisplayError($"{name} can't squeak.");
-            }
+           new SqueakCommand(animal, _cli, _bigMachine).Execute();
         }
 
         public void ListAnimals()
         {
-            foreach (var animal in _animals)
-            {
-                _cli.DisplayInfo($"{animal.Type} - {animal.Name}");
-            }
+            new ListCommand(_animals, _cli).Execute();
         }
 
         public void Delete(string nameOfAnimal)
         {
-            _animals.Remove(GetAnimalByName(nameOfAnimal));
-            _cli.DisplayInfo($"Removed {nameOfAnimal} from the lab");
+            if (!ValidateExistenceOfAnimal(nameOfAnimal))
+            {
+                _cli.DisplayError($"{nameOfAnimal} doesn't exist.");
+                return;
+            }
+            Animal aniToRemove = GetAnimalByName(nameOfAnimal);
+            new DeleteCommand(aniToRemove, _animals, _cli).Execute();
         }
 
         private bool ValidateExistenceOfAnimal(string name)
