@@ -15,16 +15,16 @@ namespace MadScientistLab.LabInventory
         private readonly List<Animal> _animals;
         private readonly ICommandInterface _cli;
         private readonly BigMachine _bigMachine;
-        private readonly Purrer _purrer;
-        private readonly Squeaker _squeaker;
+        //private readonly Purrer _purrer;
+        //private readonly Squeaker _squeaker;
 
         public Laboratory(ICommandInterface cli)
         {
             _cli = cli;
             _animals = new List<Animal>();
             _bigMachine = new BigMachine(cli);
-            _purrer = new Purrer(_cli);
-            _squeaker = new Squeaker(_cli);
+            //_purrer = new Purrer(_cli);
+            //_squeaker = new Squeaker(_cli);
         }
 
         public void Create(AnimalTypeEnum animalType, string name)
@@ -92,9 +92,10 @@ namespace MadScientistLab.LabInventory
 
             if (animal is IPurrable)
             {
-                _purrer.Execute(animal as IPurrable);
-                animal.Fed = false;
-                animal.Rested = false;
+                //_purrer.Execute(animal as IPurrable);
+                _bigMachine.MakeNoise(animal);
+                //animal.Fed = false;
+                //animal.Rested = false;
             }
             else
             {
@@ -114,9 +115,10 @@ namespace MadScientistLab.LabInventory
 
             if (animal is ISqueakable)
             {
-                _squeaker.Execute(animal as ISqueakable);
-                animal.Fed = false;
-                animal.Rested = false;
+                //_squeaker.Execute(animal as ISqueakable);
+                _bigMachine.MakeNoise(animal);
+                //animal.Fed = false;
+                //animal.Rested = false;
             }
             else
             {

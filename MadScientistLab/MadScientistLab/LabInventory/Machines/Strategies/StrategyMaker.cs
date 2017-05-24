@@ -14,10 +14,14 @@ namespace MadScientistLab.LabInventory.Machines.Strategies
         public StrategyMaker(ICommandInterface cli)
         {
             var barkStrategy = new BarkStrategy(cli);
+            var purrStrategy = new PurrStrategy(cli);
+            var squeakStrategy = new SqueakStrategy(cli);
 
             _typeToStrategy = new Dictionary<Type, ISoundStrategy>()
             {
-                { typeof(IBarkable), barkStrategy }
+                { typeof(IBarkable), barkStrategy },
+                { typeof(IPurrable), purrStrategy },
+                { typeof(ISqueakable), squeakStrategy }
             };
         }
 
