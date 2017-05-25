@@ -65,8 +65,8 @@
     <Compile Include="LabInventory\Animals\Wolf.cs" />
     <Compile Include="LabInventory\Laboratory.cs" />
     <Compile Include="LabInventory\Machines\BigMachine.cs" />
-    <Compile Include="LabInventory\Machines\Purrer.cs" />
-    <Compile Include="LabInventory\Machines\Squeaker.cs" />
+    <Compile Include="LabInventory\Machines\Strategies\PurrStrategy.cs" />
+    <Compile Include="LabInventory\Machines\Strategies\SqueakStrategy.cs" />
     <Compile Include="LabInventory\Machines\Strategies\BarkStrategy.cs" />
     <Compile Include="LabInventory\Machines\Strategies\ISoundStrategy.cs" />
     <Compile Include="LabInventory\Machines\Strategies\StrategyMaker.cs" />

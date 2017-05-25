@@ -11,14 +11,23 @@ namespace MadScientistLab.LabInventory.Machines.Strategies
     {
         private readonly Dictionary<Type, ISoundStrategy> _typeToStrategy;
 
+
         public StrategyMaker(ICommandInterface cli)
         {
-            var barkStrategy = new BarkStrategy(cli);
 
+            var barkStrategy = new BarkStrategy(cli);
+            var purrStrategy = new PurrStrategy(cli);
+            var squeakStrategy = new SqueakStrategy(cli);
+            
+            
             _typeToStrategy = new Dictionary<Type, ISoundStrategy>()
             {
-                { typeof(IBarkable), barkStrategy }
+                { typeof(IBarkable), barkStrategy },
+                { typeof(IPurrable), purrStrategy },
+                { typeof(ISqueakable), squeakStrategy }
             };
+            
+
         }
 
         public ISoundStrategy CreateStrategyFor(Animal animal)
@@ -26,4 +35,4 @@ namespace MadScientistLab.LabInventory.Machines.Strategies
             return _typeToStrategy[animal.GetType().GetInterfaces().First()];
         }
     }
-}
+    }

@@ -10,7 +10,7 @@ namespace MadScientistLab.Tests.TestStubs
         public List<string> BarksMessages { get; set; }
         public List<string> PurrsMessages { get; set; }
         public List<string> SqueaksMessages { get; set; }
-
+   
         public StubCommandInterface()
         {
             InfoMessages = new List<string>();
