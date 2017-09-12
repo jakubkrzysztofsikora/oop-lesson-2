@@ -15,7 +15,7 @@ namespace MadScientistLab.LabInventory.Machines.Strategies
         {
             var barkStrategy = new BarkStrategy(cli);
 
-            _typeToStrategy = new Dictionary<Type, ISoundStrategy>()
+            _typeToStrategy = new Dictionary<Type, ISoundStrategy>
             {
                 { typeof(IBarkable), barkStrategy }
             };

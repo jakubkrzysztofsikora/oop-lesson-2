@@ -1,9 +1,9 @@
 # oop-lesson-2
-Repository of live example OOP in C# - lesson 2: good practices, design patterns, unit tests
+Repository of live example Design Patterns in C#
 
-Assignments:
-* Create unit tests for other cli commands go sleep, go eat, list, delete and machine commands into command pattern
-* Turn other cli commands into command pattern
-* Change squeaker and purrer to one machine as barker and implement strategy pattern like with barker, using factory method
+Acceptance Criteria:
+* All cli commands are turned into Command Pattern (example: CreateAnimalCommand)
+* Change squeaker and purrer to one machine and implement strategy pattern (examples: BigMachine and BarkStrategy)
+* Factory methods are used to create Strategies (StrategyMaker)
 
 Good luck
