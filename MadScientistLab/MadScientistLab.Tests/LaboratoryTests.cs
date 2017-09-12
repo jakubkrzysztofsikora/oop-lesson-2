@@ -48,7 +48,7 @@ namespace MadScientistLab.Tests
         {
             //Given
             StubCommandInterface stubbedCli = new StubCommandInterface();
-            LabInventory.Laboratory laboratory = GivenLaboratory(stubbedCli);
+            Laboratory laboratory = GivenLaboratory(stubbedCli);
             laboratory.Create(testType, testName);
             string expectedSuccessMessage = CommonConstants.GoEatSuccessMessage;
 
@@ -72,7 +72,7 @@ namespace MadScientistLab.Tests
         {
             //Given
             StubCommandInterface stubbedCli = new StubCommandInterface();
-            LabInventory.Laboratory laboratory = GivenLaboratory(stubbedCli);
+            Laboratory laboratory = GivenLaboratory(stubbedCli);
             laboratory.Create(testType, testName);
             string expectedSuccessMessage = CommonConstants.GoSleepSuccessMessage;
 
@@ -88,7 +88,7 @@ namespace MadScientistLab.Tests
         {
             //Given
             StubCommandInterface stubbedCli = new StubCommandInterface();
-            LabInventory.Laboratory laboratory = GivenLaboratory(stubbedCli);
+            Laboratory laboratory = GivenLaboratory(stubbedCli);
             AnimalTypeEnum testType = AnimalTypeEnum.Dog;
             string testName = "Rex";
             laboratory.Create(AnimalTypeEnum.Dog, testName);
@@ -107,7 +107,7 @@ namespace MadScientistLab.Tests
         {
             //Given
             StubCommandInterface stubbedCli = new StubCommandInterface();
-            LabInventory.Laboratory laboratory = GivenLaboratory(stubbedCli);
+            Laboratory laboratory = GivenLaboratory(stubbedCli);
             AnimalTypeEnum testType = AnimalTypeEnum.Dog;
             string testName = "Rex";
             laboratory.Create(testType, testName);
@@ -125,7 +125,7 @@ namespace MadScientistLab.Tests
         {
             //Given
             StubCommandInterface stubbedCli = new StubCommandInterface();
-            LabInventory.Laboratory laboratory = GivenLaboratory(stubbedCli);
+            Laboratory laboratory = GivenLaboratory(stubbedCli);
             AnimalTypeEnum testType = AnimalTypeEnum.Cat;
             string testName = "Tom";
             laboratory.Create(testType, testName);
@@ -144,7 +144,7 @@ namespace MadScientistLab.Tests
         {
             //Given
             StubCommandInterface stubbedCli = new StubCommandInterface();
-            LabInventory.Laboratory laboratory = GivenLaboratory(stubbedCli);
+            Laboratory laboratory = GivenLaboratory(stubbedCli);
             AnimalTypeEnum testType = AnimalTypeEnum.Cat;
             string testName = "Tom";
             laboratory.Create(testType, testName);
@@ -162,7 +162,7 @@ namespace MadScientistLab.Tests
         {
             //Given
             StubCommandInterface stubbedCli = new StubCommandInterface();
-            LabInventory.Laboratory laboratory = GivenLaboratory(stubbedCli);
+            Laboratory laboratory = GivenLaboratory(stubbedCli);
             AnimalTypeEnum testType = AnimalTypeEnum.Mouse;
             string testName = "Jerry";
             laboratory.Create(testType, testName);
@@ -181,7 +181,7 @@ namespace MadScientistLab.Tests
         {
             //Given
             StubCommandInterface stubbedCli = new StubCommandInterface();
-            LabInventory.Laboratory laboratory = GivenLaboratory(stubbedCli);
+            Laboratory laboratory = GivenLaboratory(stubbedCli);
             AnimalTypeEnum testType = AnimalTypeEnum.Mouse;
             string testName = "Jerry";
             laboratory.Create(testType, testName);
@@ -205,7 +205,7 @@ namespace MadScientistLab.Tests
                 { AnimalTypeEnum.Dog, "Rex" }
             };
             StubCommandInterface stubbedCli = new StubCommandInterface();
-            LabInventory.Laboratory laboratory = GivenLaboratory(stubbedCli);
+            Laboratory laboratory = GivenLaboratory(stubbedCli);
             AddCollectionOfAnimalsToLaboratory(givenCollectionOfAnimals, laboratory);
 
             //When
@@ -230,7 +230,7 @@ namespace MadScientistLab.Tests
             };
             KeyValuePair<AnimalTypeEnum, string> animalToDelete = givenCollectionOfAnimals.First();
             StubCommandInterface stubbedCli = new StubCommandInterface();
-            LabInventory.Laboratory laboratory = GivenLaboratory(stubbedCli);
+            Laboratory laboratory = GivenLaboratory(stubbedCli);
             AddCollectionOfAnimalsToLaboratory(givenCollectionOfAnimals, laboratory);
 
             //When
