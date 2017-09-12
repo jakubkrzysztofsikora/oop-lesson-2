@@ -15,16 +15,12 @@ namespace MadScientistLab.LabInventory
         private readonly List<Animal> _animals;
         private readonly ICommandInterface _cli;
         private readonly BigMachine _bigMachine;
-        private readonly Purrer _purrer;
-        private readonly Squeaker _squeaker;
 
         public Laboratory(ICommandInterface cli)
         {
             _cli = cli;
             _animals = new List<Animal>();
             _bigMachine = new BigMachine(cli);
-            _purrer = new Purrer(_cli);
-            _squeaker = new Squeaker(_cli);
         }
 
         public void Create(AnimalTypeEnum animalType, string name)
@@ -36,15 +32,8 @@ namespace MadScientistLab.LabInventory
 
         public void GoToSleep(string name)
         {
-            if (!ValidateExistenceOfAnimal(name))
-            {
-                _cli.DisplayError($"{name} doesn't exist.");
-                return;
-            }
-
-            var animal = GetAnimalByName(name);
-            animal.GoSleep();
-            _cli.DisplayInfo($"{animal.Name} is well rested.");
+            var goToSleepCommand = new GoToSleepCommand(name, ValidateExistenceOfAnimal, GetAnimalByName, _cli);
+            goToSleepCommand.Execute();
         }
 
         public void GoEat(string name)
@@ -92,9 +81,7 @@ namespace MadScientistLab.LabInventory
 
             if (animal is IPurrable)
             {
-                _purrer.Execute(animal as IPurrable);
-                animal.Fed = false;
-                animal.Rested = false;
+                _bigMachine.MakeNoise(animal);
             }
             else
             {
@@ -114,9 +101,7 @@ namespace MadScientistLab.LabInventory
 
             if (animal is ISqueakable)
             {
-                _squeaker.Execute(animal as ISqueakable);
-                animal.Fed = false;
-                animal.Rested = false;
+                _bigMachine.MakeNoise(animal);
             }
             else
             {
